@@ -13,6 +13,7 @@ app.use(cors({
              "https://genai-project-beryl.vercel.app"
     ],
     credentials: true,
+    methods:['GET', 'POST', 'PUT', 'DELETE']]
 }));
 
 app.use('/api/auth', authRouter);
