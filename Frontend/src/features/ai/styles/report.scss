@@ -1,0 +1,451 @@
+// Report Page Dark Theme Styles
+
+// Variables (same as interviewPlan.scss)
+$bg-dark: #0f1419;
+$bg-darker: #0a0f15;
+$bg-card: #1a1f2e;
+$text-primary: #ffffff;
+$text-secondary: #b8bcc8;
+$text-muted: #7a8a99;
+$accent-pink: #ff1493;
+$accent-pink-dark: #e60e7b;
+$border-dark: #2a3342;
+$shadow-dark: 0 4px 20px rgba(0, 0, 0, 0.4);
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-2xl: 48px;
+$radius: 8px;
+$radius-lg: 12px;
+$transition: all 0.3s ease;
+
+// Severity colors for skill tags
+$high-severity: #ff4444;
+$medium-severity: #ffaa00;
+$low-severity: #44aa44;
+
+// Reset & Base
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  background: linear-gradient(135deg, $bg-darker 0%, $bg-dark 100%);
+  color: $text-primary;
+  min-height: 100vh;
+}
+
+// Container
+.report-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, $bg-darker 0%, $bg-dark 100%);
+}
+
+// Report Content - Three Column Layout
+.report-content {
+  display: grid;
+  grid-template-columns: 250px 1fr 280px;
+  gap: $spacing-md;
+  padding: $spacing-xl;
+  max-width: 1600px;
+  margin: 0 auto;
+  min-height: 100vh;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: 200px 1fr 220px;
+    gap: $spacing-md;
+    padding: $spacing-lg;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+    padding: $spacing-md;
+  }
+}
+
+// Sidebars
+.report-sidebar {
+  height: fit-content;
+  position: sticky;
+  top: $spacing-lg;
+
+  @media (max-width: 768px) {
+    position: static;
+  }
+}
+
+// Left Sidebar
+.left-sidebar {
+  .sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+    background-color: $bg-card;
+    border: 1px solid $border-dark;
+    border-radius: $radius-lg;
+    padding: $spacing-md;
+    box-shadow: $shadow-dark;
+
+    .nav-item {
+      padding: $spacing-md;
+      background-color: transparent;
+      border: 1px solid $border-dark;
+      border-radius: $radius;
+      color: $text-secondary;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: $transition;
+      text-align: left;
+
+      &:hover {
+        background-color: rgba($accent-pink, 0.05);
+        border-color: $accent-pink;
+        color: $text-primary;
+      }
+
+      &.active {
+        background-color: rgba($accent-pink, 0.1);
+        border-color: $accent-pink;
+        color: $accent-pink;
+      }
+    }
+  }
+}
+
+// Main Content
+.report-main {
+  background-color: $bg-card;
+  border: 1px solid $border-dark;
+  border-radius: $radius-lg;
+  padding: $spacing-xl;
+  box-shadow: $shadow-dark;
+
+  .question-content {
+    .question-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: $spacing-xl;
+      padding-bottom: $spacing-lg;
+      border-bottom: 1px solid $border-dark;
+
+      h2 {
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      .question-count {
+        font-size: 12px;
+        color: $text-muted;
+        background-color: rgba($accent-pink, 0.1);
+        padding: $spacing-sm $spacing-md;
+        border-radius: $radius;
+      }
+    }
+
+    .question-section {
+      margin-bottom: $spacing-xl;
+
+      .section-title {
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: $accent-pink;
+        margin-bottom: $spacing-md;
+        letter-spacing: 0.5px;
+      }
+
+      .question-text,
+      .intention-text,
+      .answer-text {
+        font-size: 14px;
+        line-height: 1.8;
+        color: $text-secondary;
+        padding: $spacing-md;
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: $radius;
+        border-left: 3px solid $accent-pink;
+      }
+    }
+
+    .question-navigation {
+      display: flex;
+      gap: $spacing-md;
+      margin-top: $spacing-xl;
+      padding-top: $spacing-lg;
+      border-top: 1px solid $border-dark;
+
+      .nav-btn {
+        flex: 1;
+        padding: $spacing-md;
+        background-color: rgba($accent-pink, 0.1);
+        border: 1px solid $accent-pink;
+        color: $accent-pink;
+        border-radius: $radius;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: $transition;
+
+        &:hover:not(:disabled) {
+          background-color: $accent-pink;
+          color: $bg-dark;
+        }
+
+        &:disabled {
+          opacity: 0.4;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+
+  .roadmap-content {
+    h2 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: $spacing-xl;
+    }
+
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: $spacing-lg;
+
+      .roadmap-card {
+        background-color: rgba(0, 0, 0, 0.3);
+        border: 1px solid $border-dark;
+        border-radius: $radius-lg;
+        padding: $spacing-lg;
+        position: relative;
+        transition: $transition;
+
+        &:hover {
+          border-color: $accent-pink;
+          background-color: rgba($accent-pink, 0.05);
+        }
+
+        .day-badge {
+          position: absolute;
+          top: $spacing-md;
+          right: $spacing-md;
+          background-color: rgba($accent-pink, 0.2);
+          color: $accent-pink;
+          padding: 4px $spacing-md;
+          border-radius: $radius;
+          font-size: 11px;
+          font-weight: 600;
+        }
+
+        h3 {
+          font-size: 14px;
+          font-weight: 600;
+          margin-bottom: $spacing-md;
+          margin-top: $spacing-lg;
+          color: $text-primary;
+        }
+
+        p {
+          font-size: 13px;
+          color: $text-secondary;
+          line-height: 1.6;
+        }
+      }
+    }
+  }
+}
+
+// Right Sidebar
+.right-sidebar {
+  .match-score-container {
+    background-color: $bg-card;
+    border: 1px solid $border-dark;
+    border-radius: $radius-lg;
+    padding: $spacing-lg;
+    box-shadow: $shadow-dark;
+    margin-bottom: $spacing-lg;
+    text-align: center;
+
+    .score-circle {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      margin: 0 auto $spacing-md;
+
+      .score-svg {
+        width: 100%;
+        height: 100%;
+        transform: rotate(-90deg);
+
+        .score-bg {
+          fill: none;
+          stroke: $border-dark;
+          stroke-width: 4;
+        }
+
+        .score-progress {
+          fill: none;
+          stroke: $accent-pink;
+          stroke-width: 4;
+          stroke-linecap: round;
+          transition: stroke-dasharray 0.5s ease;
+        }
+      }
+
+      .score-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: $spacing-xs;
+
+        .score-value {
+          font-size: 32px;
+          font-weight: 700;
+          color: $accent-pink;
+        }
+
+        .score-label {
+          font-size: 11px;
+          color: $text-muted;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+      }
+    }
+  }
+
+  .skill-gaps-container {
+    background-color: $bg-card;
+    border: 1px solid $border-dark;
+    border-radius: $radius-lg;
+    padding: $spacing-lg;
+    box-shadow: $shadow-dark;
+
+    .sidebar-title {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: $text-primary;
+      margin-bottom: $spacing-lg;
+      letter-spacing: 0.5px;
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-md;
+
+      .skill-tag {
+        display: inline-block;
+        padding: 6px $spacing-md;
+        border: 1px solid;
+        border-radius: $radius;
+        font-size: 12px;
+        font-weight: 600;
+        text-align: center;
+        cursor: default;
+        transition: $transition;
+
+        &.high {
+          background-color: rgba($high-severity, 0.1);
+          border-color: $high-severity;
+          color: $high-severity;
+        }
+
+        &.medium {
+          background-color: rgba($medium-severity, 0.1);
+          border-color: $medium-severity;
+          color: $medium-severity;
+        }
+
+        &.low {
+          background-color: rgba($low-severity, 0.1);
+          border-color: $low-severity;
+          color: $low-severity;
+        }
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+      }
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .report-content {
+    grid-template-columns: 1fr;
+  }
+
+  .report-sidebar {
+    .sidebar-nav {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      .nav-item {
+        padding: $spacing-sm;
+        font-size: 12px;
+      }
+    }
+  }
+
+  .report-main {
+    padding: $spacing-lg;
+
+    .question-navigation {
+      flex-direction: column;
+    }
+
+    .roadmap-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .right-sidebar {
+    .skill-gaps-container {
+      .skills-grid {
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        .skill-tag {
+          flex: 1;
+          min-width: 120px;
+        }
+      }
+    }
+  }
+}
+
+// Scrollbar Styling
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $bg-dark;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $border-dark;
+  border-radius: 4px;
+
+  &:hover {
+    background: rgba($accent-pink, 0.5);
+  }
+}
