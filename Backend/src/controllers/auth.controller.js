@@ -2,6 +2,7 @@ const userModel = require('../models/user.model');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const BlacklistedToken = require('../models/blacklisted.model');
+const path = require('node:path');
 
 /**
  * @route POST /api/auth/register
@@ -34,6 +35,8 @@ async function registerUser(req, res) {
             httpOnly: true,
             secure: true,
             sameSite: "none",
+            path:"/",
+            maxAge:24 * 60 * 60 * 1000,
         });
 
         res.status(201).json({
@@ -88,6 +91,8 @@ async function loginuser(req, res) {
             httpOnly: true,
             secure: true,
             sameSite: "none",
+            path:"/",
+            maxAge:"24 * 60 * 60 * 1000",
     })
         res.status(200).json({
             message : "User login successfully",
