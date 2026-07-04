@@ -34,9 +34,9 @@ async function registerUser(req, res) {
         res.cookie('token', token,{
             httpOnly: true,
             secure: true,
-            sameSite: "none",
+            sameSite: "None",
             path:"/",
-            maxAge:24 * 60 * 60 * 1000,
+            maxAge: 24 * 60 * 60 * 1000,
         });
 
         res.status(201).json({
@@ -90,9 +90,9 @@ async function loginuser(req, res) {
         res.cookie("token",token,{
             httpOnly: true,
             secure: true,
-            sameSite: "none",
+            sameSite: "None",
             path:"/",
-            maxAge:"24 * 60 * 60 * 1000",
+            maxAge: 24 * 60 * 60 * 1000,
     })
         res.status(200).json({
             message : "User login successfully",
@@ -126,7 +126,12 @@ async function logoutUser(req, res) {
         const blacklistedToken = new BlacklistedToken({ token });
         await blacklistedToken.save();
 
-        res.clearCookie("token");
+        res.clearCookie("token",{
+            httpOnly: true,
+            secure: true,
+            sameSite: "None",
+            path:"/",
+        });
         res.status(200).json({ message: "User logged out successfully" });
         
     } catch (error) {
