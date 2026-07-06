@@ -7,7 +7,7 @@ const aiClient = new GoogleGenAI({
   apiKey: process.env.GOOGLE_API_KEY,
 });
 
-async function generateReport(jobDescription, resume, selfDescription) {
+async function generateReport(jobDescription, resumeContext, selfDescription) {
   try {
     const prompt = `You are a senior technical recruiter, hiring manager, career coach, ATS specialist, and interview preparation expert.
 
@@ -19,7 +19,7 @@ JOB DESCRIPTION:
 ${jobDescription}
 
 RESUME:
-${resume}
+${resumeContext}
 
 SELF DESCRIPTION:
 ${selfDescription}

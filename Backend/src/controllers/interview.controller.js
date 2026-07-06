@@ -1,6 +1,7 @@
-const { PDFParse } = require("pdf-parse");
 const generateReport = require("../services/ai.service");
 const reportModel = require("../models/report.model");
+const { extractText } = require("../utils/pdfparse");
+const { getResumeContext } = require("../services/rag.service");
 
 async function generateReportController(req, res) {
   try {
@@ -8,11 +9,7 @@ async function generateReportController(req, res) {
       return res.status(400).json({ error: "Resume file is required" });
     }
 
-    const parser = new PDFParse({ data: req.file.buffer });
-    const pdfData = await parser.getText();
-    const resumecontent = pdfData.text;
-    await parser.destroy();
-
+    const resumecontent = await extractText(req.file.buffer);
     const { jobDescription, selfDescription } = req.body;
 
     if (!jobDescription || !selfDescription) {
@@ -21,9 +18,15 @@ async function generateReportController(req, res) {
       });
     }
 
+    const resumeContext = await getResumeContext(
+      resumecontent,
+      req.user.userId,
+      jobDescription,
+    );
+
     const reportbyai = await generateReport(
       jobDescription,
-      resumecontent,
+      resumeContext,
       selfDescription,
     );
 
