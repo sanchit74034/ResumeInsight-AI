@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const BlacklistedToken = require('../models/blacklisted.model');
 const path = require('node:path');
+const isProduction = process.env.NODE_ENV === 'production';
 
 /**
  * @route POST /api/auth/register
@@ -33,8 +34,8 @@ async function registerUser(req, res) {
 
         res.cookie('token', token,{
             httpOnly: true,
-            secure: true,
-            sameSite: "None",
+            secure: isProduction,
+            sameSite: isProduction ? "None" : "Lax",
             path:"/",
             maxAge: 24 * 60 * 60 * 1000,
         });
@@ -89,8 +90,8 @@ async function loginuser(req, res) {
 
         res.cookie("token",token,{
             httpOnly: true,
-            secure: true,
-            sameSite: "None",
+            secure: isProduction,
+            sameSite: isProduction ? "None" : "Lax",
             path:"/",
             maxAge: 24 * 60 * 60 * 1000,
     })
@@ -117,6 +118,9 @@ async function loginuser(req, res) {
  */
 async function logoutUser(req, res) {
     try {
+        console.log("===== LOGOUT =====");
+        console.log("Headers Cookie:", req.headers.cookie);
+        console.log("Parsed Cookies:", req.cookies);
         const token = req.cookies.token;
 
         if (!token) {
@@ -128,8 +132,8 @@ async function logoutUser(req, res) {
 
         res.clearCookie("token",{
             httpOnly: true,
-            secure: true,
-            sameSite: "None",
+            secure: isProduction,
+            sameSite: isProduction ? "None" : "Lax",
             path:"/",
         });
         res.status(200).json({ message: "User logged out successfully" });

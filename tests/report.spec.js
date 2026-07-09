@@ -19,9 +19,8 @@ test('Open protected report by ID', async ({ page }) => {
   // Upload Resume
   await page.setInputFiles(
     '#resume-input',
-    'tests/fixtures/SANCHIT_MITTAL_RESUME.pdf'
+    'tests/fixtures/DUMMY_RESUME.pdf'
   );
-
   // Fill form
   await page.locator('#job-description-input')
     .fill('Data Scientist');
