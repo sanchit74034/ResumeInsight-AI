@@ -53,7 +53,7 @@ jobs:
 
       # Wait for Backend
       - name: Wait for Backend
-        run: npx wait-on http://localhost:3000
+        run: npx wait-on http://localhost:3000/health
 
       # Start Frontend
       - name: Start Frontend

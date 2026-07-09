@@ -16,6 +16,13 @@ app.use(cors({
     methods:['GET', 'POST', 'PUT', 'DELETE']
 }));
 
+app.get('/health', (req, res) => {
+    res.status(200).json({
+        status: 'OK',
+        message: 'Backend is healthy'
+    });
+});
+
 app.use('/api/auth', authRouter);
 app.use('/api/interview', reportRouter);
 
