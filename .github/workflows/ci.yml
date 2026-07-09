@@ -44,7 +44,7 @@ jobs:
         working-directory: Backend
         env:
           PORT: 3000
-          MONGO_URI: ${{ secrets.MONGODB_URI }}
+          MONGO_URI: ${{ secrets.MONGO_URI }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           PINECONE_API_KEY: ${{ secrets.PINECONE_API_KEY }}
