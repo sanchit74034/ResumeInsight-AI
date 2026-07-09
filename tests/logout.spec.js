@@ -14,7 +14,6 @@ test('User can logout successfully', async ({ page }) => {
   await expect
     .poll(async () => {
       const cookies = await page.context().cookies();
-      console.log('Cookies after login:', cookies);
       return cookies.some(cookie => cookie.name === 'token');
     })
     .toBe(true);
@@ -29,13 +28,10 @@ test('User can logout successfully', async ({ page }) => {
 
   const logoutResponse = await logoutResponsePromise;
 
-  console.log('Logout status:', logoutResponse.status());
-  console.log('Logout response:', await logoutResponse.text());
 
   expect(logoutResponse.status()).toBe(200);
 
   await expect(page.locator('[name="email"]')).toBeVisible();
 
   const cookies = await page.context().cookies();
-  console.log('Cookies after logout:', cookies);
 });

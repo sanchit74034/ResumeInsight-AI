@@ -118,9 +118,6 @@ async function loginuser(req, res) {
  */
 async function logoutUser(req, res) {
     try {
-        console.log("===== LOGOUT =====");
-        console.log("Headers Cookie:", req.headers.cookie);
-        console.log("Parsed Cookies:", req.cookies);
         const token = req.cookies.token;
 
         if (!token) {
