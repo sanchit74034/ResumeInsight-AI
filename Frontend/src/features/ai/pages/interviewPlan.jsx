@@ -159,7 +159,7 @@ e.g. 'Senior Frontend Engineer at Google requires proficiency in React, TypeScri
 
           {/* OR Divider */}
           <div className="divider-section">
-            <span className="divider-text">OR</span>
+            <span className="divider-text">ALSO REQUIRED</span>
           </div>
 
           {/* Self Description Section */}
