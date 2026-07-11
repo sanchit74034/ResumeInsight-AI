@@ -31,6 +31,11 @@ async function registerUser(req, res) {
 
         const token = jwt.sign({userId: newUser._id}, process.env.JWT_SECRET, 
         {expiresIn: '1D'});
+        
+        console.log("========== REGISTER ==========");
+        console.log("NODE_ENV:", process.env.NODE_ENV);
+        console.log("isProduction:", isProduction);
+
 
         res.cookie('token', token,{
             httpOnly: true,
@@ -88,6 +93,11 @@ async function loginuser(req, res) {
             process.env.JWT_SECRET, 
             {expiresIn: '1D'});
 
+        console.log("========== LOGIN ==========");
+        console.log("NODE_ENV:", process.env.NODE_ENV);
+        console.log("isProduction:", isProduction);
+
+
         res.cookie("token",token,{
             httpOnly: true,
             secure: isProduction,
@@ -106,7 +116,7 @@ async function loginuser(req, res) {
 
     }
     catch (error) {
-        console.error("Error registering user", error);
+        console.error("Error logging in user", error);
         res.status(500).json({message: "Server Error"})
     }
 }
