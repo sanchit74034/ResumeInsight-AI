@@ -12,7 +12,7 @@ export const generateReport = async ({jobDescription,selfDescription,resume}) =>
     formData.append('selfDescription', selfDescription);
     formData.append('resume', resume);
 
-    const response = await api.post('/', formData, {
+    const response = await api.post('', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -36,7 +36,7 @@ export const getReportById = async (reportId) => {
 
 export const getAllReports = async () => {
   try {
-    const response = await api.get('/');
+    const response = await api.get('');
     return response.data.reports;
   } catch (error) {
     console.error('Error fetching all reports:', error);
