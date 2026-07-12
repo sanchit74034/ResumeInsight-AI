@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/api/:path*",
+      "destination": "https://genai-project-9t0e.onrender.com/api/:path*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/"
     }
