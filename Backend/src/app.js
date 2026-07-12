@@ -6,6 +6,8 @@ const cors = require('cors')
 
 const app = express();
 
+app.disable('etag');
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
