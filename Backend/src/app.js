@@ -16,6 +16,11 @@ app.use(cors({
     methods:['GET', 'POST', 'PUT', 'DELETE']
 }));
 
+app.use('/api', (req, res, next) => {
+    res.set('Cache-Control', 'no-store');
+    next();
+});
+
 app.get('/health', (req, res) => {
     res.status(200).json({
         status: 'OK',

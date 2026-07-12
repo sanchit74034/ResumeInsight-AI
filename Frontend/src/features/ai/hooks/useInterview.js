@@ -54,9 +54,10 @@ export const useInterview = () => {
     setLoading(true);
     try {
       const response = await getAllReports();
-      setReports(response);
+      setReports(response ?? []);
     } catch (error) {
       console.error("Error fetching all reports:", error);
+      setReports([]);
     } finally {
       setLoading(false);
     }
